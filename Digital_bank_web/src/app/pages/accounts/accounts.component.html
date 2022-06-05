@@ -1,0 +1,4 @@
+
+<app-customers-card [selectedCustomerSubject]="selectedCustomerId" ></app-customers-card>
+
+<app-accounts-card [customerIdObs]="selectedCustomerId.asObservable()"  ></app-accounts-card>

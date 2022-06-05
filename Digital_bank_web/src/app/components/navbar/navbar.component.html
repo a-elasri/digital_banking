@@ -1,0 +1,91 @@
+<header class="p-3 bg text-white">
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap ">
+            <span class="fs-4 sidebar-heading text-center">
+                <img src="/assets/logo.png" width="50" height="50" alt="Digital Bank"> Digital Bank
+            </span>
+
+            <ng-container *ngIf="!user; else authenticated">
+                <a href="/" class="d-flex align-items-center mb-2 mb- mx-auto">
+                </a>
+                <div class="text-end">
+
+                    <button type="button" class="btn btn-outline-light me-2" routerLink="/login"> <i class="bi bi-box-arrow-in-right"></i> Login</button>
+                    <button type="button" class="btn btn-outline-warning " data-bs-toggle="tooltip" (click)="qliq()"
+                    title="You can't sign-up yet !"> <i class="bi bi-person-plus"></i> Sign-up</button>
+                </div>
+            </ng-container>
+            <ng-template #authenticated>
+                <a href="/" class="d-flex align-items-center mb-2 mb- mx-auto">
+                </a>
+                <div class="text-end" >
+                    <div class="nav-item ">
+                        <a class="nav-link action-button text-white text-decoration-none" href="/" role="button" aria-expanded="false">
+                            <i _ngcontent-yqh-c54="" class="bi bi-filter-left"></i>Home
+                        </a>
+                    </div>
+                </div>
+                <div class="text-end" >
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle action-button text-white text-decoration-none" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            Costumers
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a
+                                routerLink="/customers"
+                                routerLinkActive="active"
+                                class="nav-link text-white roundd p5"
+                              >
+                                <i class="bi bi-people"></i>
+                                List of customers
+                              </a></li>
+                            <li><a class="dropdown-item  text-white" href="/customers/new" *ngIf="userRole=='ADMIN'"  > <i class="bi bi-plus-circle"></i>  Add new customer </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="text-end" >
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle action-button text-white text-decoration-none" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            Accounts & Operations
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a
+                                routerLink="/accounts"
+                                routerLinkActive="active"
+                                class="nav-link text-white roundd p5"
+                              >
+                                <i class="bi bi-people"></i>
+                                List of accounts
+                              </a></li>
+                            <li><a class="dropdown-item  text-white" href="/operations" *ngIf="userRole=='ADMIN'"  > <i class="bi bi-arrow-left-right"></i>  Account operations </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <a href="/" class="d-flex align-items-center mb-2 mb- mx-auto">
+                </a>
+                <div class="text-end" >
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle action-button text-white text-decoration-none" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            <i class="bi bi-person-fill"></i>
+                            {{ user?.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item text-white text-decoration-none" (click)="logout()">
+                                <i class="bi bi-box-arrow-left"></i>
+                              Log out
+                            </a></li>
+
+                            <li><a class="dropdown-item  text-white disabled" href="#" *ngIf="userRole=='ADMIN'"  > <strong>Admin</strong> </a></li>
+                            <li><a class="dropdown-item text-white disabled" href="#" *ngIf="userRole=='USER'" >  <strong>User</strong> </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</header>
